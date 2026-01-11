@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Gerador de Texto Profissional</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#fff;
+  margin:0;
+  padding:20px;
+}
+.box{
+  max-width:600px;
+  margin:auto;
+  border:2px solid #000;
+  padding:20px;
+}
+input, textarea, button{
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+  font-size:14px;
+}
+textarea{
+  height:420px;
+  resize:none;
+}
+button{
+  background:#000;
+  color:#fff;
+  border:none;
+  font-weight:bold;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+  <h2>Gerador de Texto Completo</h2>
+  <p>Digite o que você vende e gere um texto longo e envolvente.</p>
+  <input id="produto" placeholder="Ex: ferramentas digitais">
+  <button onclick="gerar()">Gerar texto</button>
+  <textarea id="saida" placeholder="Texto gerado aqui..."></textarea>
+</div>
+
+<script>
+function p(a){return a[Math.floor(Math.random()*a.length)]}
+function c(x){return Math.random()<x}
+function plural(t){return t.trim().endsWith("s")}
+
+function gerar(){
+  const prod=document.getElementById("produto").value.trim();
+  if(!prod){alert("Digite o produto.");return}
+
+  const isP = plural(prod);
+
+  const abertura=[
+    "Você já reparou como a maioria das pessoas tem dificuldade em explicar o que vende?",
+    "Ter um bom produto não significa saber divulgá-lo da forma certa.",
+    "Muita gente até tenta divulgar, mas acaba desistindo por não saber o que escrever."
+  ];
+
+  const contexto=[
+    "Na prática, a falta de clareza afasta possíveis interessados.",
+    "Quando o texto não é claro, a atenção do leitor se perde rapidamente.",
+    "Sem uma mensagem bem construída, qualquer divulgação vira esforço jogado fora."
+  ];
+
+  const dor=[
+    "Isso gera insegurança e faz muita gente travar.",
+    "A dúvida sobre o que escrever impede a divulgação constante.",
+    "Sem uma base, o processo se torna cansativo e confuso."
+  ];
+
+  const solucaoIntro=[
+    "É exatamente nesse ponto que um texto bem estruturado faz diferença.",
+    "Ter um modelo pronto facilita todo o processo de divulgação.",
+    "Uma base clara ajuda a organizar as ideias e comunicar melhor."
+  ];
+
+  const solucao=[
+    isP
+      ? `${prod} podem ser apresentados de forma clara, direta e sem complicação.`
+      : `${prod} pode ser apresentado de forma clara, direta e sem complicação.`,
+    isP
+      ? `A proposta é explicar ${prod} de maneira acessível para qualquer pessoa.`
+      : `A proposta é explicar ${prod} de maneira acessível para qualquer pessoa.`,
+    isP
+      ? `${prod} podem ser divulgados sem termos técnicos ou linguagem confusa.`
+      : `${prod} pode ser divulgado sem termos técnicos ou linguagem confusa.`
+  ];
+
+  const beneficios=[
+    "Isso economiza tempo e reduz erros na comunicação.",
+    "Com um texto bem definido, a divulgação se torna mais natural.",
+    "A mensagem flui melhor e prende a atenção de quem lê."
+  ];
+
+  const reforco=[
+    "Quando o leitor entende rapidamente o que está sendo oferecido, o interesse aumenta.",
+    "Textos claros facilitam a tomada de decisão.",
+    "Uma comunicação simples costuma gerar mais resultados."
+  ];
+
+  const fechamento=[
+    "Esse texto serve como base e pode ser ajustado conforme a necessidade.",
+    "Você pode adaptar o conteúdo para diferentes plataformas.",
+    "Use esse modelo como ponto de partida para melhorar sua divulgação."
+  ];
+
+  let texto = "";
+
+  // Parágrafo 1
+  texto += p(abertura)+" "+p(contexto)+"\n\n";
+
+  // Parágrafo 2
+  texto += p(dor)+" "+p(contexto)+"\n\n";
+
+  // Parágrafo 3
+  texto += p(solucaoIntro)+" "+p(solucao)+"\n\n";
+
+  // Parágrafo 4
+  texto += p(beneficios)+" "+p(solucao)+"\n\n";
+
+  // Parágrafo 5 (opcional)
+  if(c(0.8)){
+    texto += p(reforco)+" "+p(beneficios)+"\n\n";
+  }
+
+  // Fechamento
+  texto += p(fechamento);
+
+  document.getElementById("saida").value = texto;
+}
+</script>
+</body>
+</html>
